@@ -1,11 +1,13 @@
-import { Column, Entity, Index, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, Column, Entity, Index, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import {compareSync, hashSync} from "bcrypt";
+
 import { EntityCenter } from "./center.entity";
 import { EntityCourtUser } from "./court_user.entity";
-import { Rol } from "./enums/rol.enums";
 import { State } from "./enums/state.enums";
 import { EntityHorary } from "./horary.entity";
 import { EntityRol } from "./rol.entity";
 import { EntityTypeDocument } from "./type_document.entity";
+import { SALTS } from "src/modules/@common/constants";
 
 
 @Entity('user')
@@ -93,4 +95,13 @@ export class EntityUser{
   })
   center:EntityCenter;
 
-}
+
+  @BeforeInsert()
+   async hasPassword(): Promise<void> {
+      this.password= await hashSync(this.password,SALTS.TEN);
+    }
+
+    public async ComparePassword(attemp:string):Promise<boolean>{
+      return compareSync(attemp,this.password);
+    }
+  }
