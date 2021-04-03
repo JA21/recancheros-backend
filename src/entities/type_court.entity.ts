@@ -3,7 +3,7 @@ import { EntityCourt } from "./court.entity";
 
 @Entity('type_court')
 export class EntityTypeCourt{
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn('increment')
   id_typecourt:number;
 
   @Column({nullable:false,

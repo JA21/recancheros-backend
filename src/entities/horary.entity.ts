@@ -5,7 +5,7 @@ import { EntityUser } from "./user.entity";
 
 @Entity('horary')
 export class EntityHorary{
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn('increment')
   id_horary:number;
 
   @Column({name:'start_hour'

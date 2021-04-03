@@ -1,30 +1,38 @@
-import { IsBoolean, IsEmail, IsNotEmpty, IsString, Length } from "class-validator";
+import { IsBoolean, IsBooleanString, IsEmail, IsNotEmpty, IsNumber, IsString, Length, MinLength } from "class-validator";
+import { State } from "src/entities/enums";
 
 
 export class CreateUserDto{
 
   @IsString()
   @IsNotEmpty()
-  @Length(10,50)
+  @Length(1,200,{
+    message:'Name user is to loong'})
   name_user:string;
   
   @IsString()
   lastname_user:string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsNotEmpty({message:'Tel is obligatore'})
   tel:string;
   
   @IsEmail()
-  @IsNotEmpty()
+  @IsNotEmpty({message:'Email is obligatore'})
+  @Length(1,255,{message:'Email is to loong'})
   email:string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsNotEmpty({message:'Password is obligatore'})
+  @Length(1,255,{message:'Passwor is to loong'})
   password:string;
 
-  @IsBoolean()
-  state:boolean;
+  // @IsBooleanString()
+  // state:State;
 
-  
+  // @IsString()
+  // rol:number;
+
+  // @IsString()
+  // type_document:number;
 }

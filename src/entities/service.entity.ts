@@ -3,7 +3,7 @@ import { EntityCenterService } from "./center_service.entity";
 
 @Entity('service')
 export class EntityService{
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('increment')
   id_service:number;
 
   @Column({nullable:false,

@@ -3,7 +3,7 @@ import { EntityCenter } from "./center.entity";
 
 @Entity('center_phone')
 export class EntityCenterPhone{
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn('increment')
   id_centerphone;
 
   @Column({nullable:false,

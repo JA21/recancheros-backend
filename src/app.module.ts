@@ -6,6 +6,7 @@ import { AppService } from "./app.service";
 import { CommonModule } from "./modules/@common/common.module";
 import appConfig from "./modules/@common/config/app.config";
 import typeormConfig from "./modules/@common/config/typeorm.config";
+import { UserModule } from "./modules/user/user.module";
 
 
 
@@ -18,10 +19,10 @@ import typeormConfig from "./modules/@common/config/typeorm.config";
     }),
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
-      useFactory: (configService: ConfigService) => configService.get('typeorm.user'),
-      name: 'user'
+      useFactory: (configService: ConfigService) => configService.get('typeorm')
     }),
-    CommonModule
+    
+    UserModule
   ],
   controllers:[AppController],
   providers:[AppService]

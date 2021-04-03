@@ -5,7 +5,7 @@ import { State } from "./enums";
 
 @Entity('sport')
 export class EntitySport{
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn('increment')
   id_sport:number;
 
   @Column({nullable:false,

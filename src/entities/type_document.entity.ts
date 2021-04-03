@@ -5,7 +5,7 @@ import { EntityUser } from "./user.entity";
 
 @Entity('type_document')
 export class EntityTypeDocument {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn('increment')
   id_document:number;
 
   @Column({nullable:false,

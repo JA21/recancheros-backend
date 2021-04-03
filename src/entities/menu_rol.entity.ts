@@ -5,7 +5,7 @@ import { EntityRol } from "./rol.entity";
 
 @Entity('menu_rol')
 export class EntityMenuRol {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn('increment')
   id_menurol:number;
 
   @ManyToOne((type)=>EntityMenu,menu=>menu.menu_rol,{

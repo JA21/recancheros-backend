@@ -6,7 +6,7 @@ import { EntityUser } from "./user.entity";
 
 @Entity('center')
 export class EntityCenter {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn('increment')
   id_center:number;
 
   @Column({nullable:false,

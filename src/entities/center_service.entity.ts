@@ -4,7 +4,7 @@ import { EntityService } from "./service.entity";
 
 @Entity('center_service')
 export class EntityCenterService{
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn('increment')
   id_centerservice:number;
 
   @ManyToOne((type)=>EntityCenter,center=>center.center_service,{

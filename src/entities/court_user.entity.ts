@@ -4,7 +4,7 @@ import { EntityUser } from "./user.entity";
 
 @Entity('court_user')
 export class EntityCourtUser{
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn('increment')
   id_courtuser:number;
 
   @ManyToOne((type)=>EntityUser,user=>user.court_user,{

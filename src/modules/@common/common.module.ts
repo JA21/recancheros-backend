@@ -5,7 +5,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 @Global()
 @Module({
   imports: [
-    TypeOrmModule.forFeature([], 'user')
+    TypeOrmModule.forFeature([])
 
   ],
   providers: [

@@ -4,9 +4,9 @@ import { EntityMenuRol } from "./menu_rol.entity";
 import { EntityUser } from "./user.entity";
 
 
-@Entity('rol')
+@Entity({schema:'public',name:'rol'})
 export class EntityRol{
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn('increment')
   id_rol:number;
   
   @Column({nullable:false,
@@ -26,13 +26,13 @@ export class EntityRol{
     onDelete:'RESTRICT',
     onUpdate:'RESTRICT'
   } )
-  menu_rol:EntityMenuRol;
+  menu_rol:EntityMenuRol[];
   
   @OneToMany((type)=>EntityUser,user=>user.rol,{
     nullable:false,
     onDelete:'RESTRICT',
     onUpdate:'RESTRICT'
   } )
-  user:EntityUser;
+  user:EntityUser[];
 
 }

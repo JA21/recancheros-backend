@@ -4,7 +4,7 @@ import { EntitySport } from "./sport.entity";
 
 @Entity('court_sport')
 export class EntityCourtSport{
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn('increment')
   id_courtsport:number;
   
   @ManyToOne((type)=>EntitySport,sport=>sport.court_sport,{nullable:false,
