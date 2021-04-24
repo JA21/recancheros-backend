@@ -4,18 +4,18 @@ import { EntityCourt } from "./court.entity";
 @Entity('type_court')
 export class EntityTypeCourt{
   @PrimaryGeneratedColumn('increment')
-  id_typecourt:number;
+  id:number;
 
   @Column({nullable:false,
   type:'varchar',
   name:'mame_court',
   length:180})
-  name:string;
+  nameCourt:string;
 
-  @OneToMany((type)=>EntityCourt,court=>court.type_court,{
+  @OneToMany((type)=>EntityCourt,court=>court.typeCourt,{
     nullable:false,
     onDelete:'RESTRICT',
     onUpdate:'RESTRICT'
   })
-  court:EntityCourt;
+  court:EntityCourt[];
 }

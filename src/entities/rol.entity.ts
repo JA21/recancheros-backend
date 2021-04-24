@@ -1,13 +1,13 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Rol } from "./enums/rol.enums";
-import { EntityMenuRol } from "./menu_rol.entity";
+import { EntityMenuRol } from "./menuRol.entity";
 import { EntityUser } from "./user.entity";
 
 
-@Entity({schema:'public',name:'rol'})
+@Entity({name:'rol'})
 export class EntityRol{
   @PrimaryGeneratedColumn('increment')
-  id_rol:number;
+  id:number;
   
   @Column({nullable:false,
     type:'enum',
@@ -26,7 +26,7 @@ export class EntityRol{
     onDelete:'RESTRICT',
     onUpdate:'RESTRICT'
   } )
-  menu_rol:EntityMenuRol[];
+  menuRol:EntityMenuRol[];
   
   @OneToMany((type)=>EntityUser,user=>user.rol,{
     nullable:false,

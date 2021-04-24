@@ -13,22 +13,22 @@ export class UserController {
     return res;
   }
 
-  @Get('/:id')
-  public async findOneUser(@Param('id') id: number) {
-    const res = await this.findService.oneUser(id);
-    return res;
-  }
+  // @Get('/:id')
+  // public async findOneUser(@Param('id') id: number) {
+  //   const res = await this.findService.oneUser(id);
+  //   return res;
+  // }
 
-  @Get('/:name')
-  public async findOneUserName(@Param('name') name: string) {
-    const res = await this.findService.oneUserName(name);
-    return res;
-  }
+  // @Get('/:name')
+  // public async findOneUserName(@Param('name') name: string) {
+  //   const res = await this.findService.oneUserName(name);
+  //   return res;
+  // }
 
-  @Get('usersall')
-  public async findUserTypeDocument() {
-    const res = await this.findService.typeDocumentUser();
-    console.log(res,"enviand");
+  @Get('/usersall')
+  public async userInnerJoin() {
+    console.log("enviand");
+    const res = await this.findService.rolinnerJoin();
     return res;
   }
 
@@ -39,35 +39,38 @@ export class UserController {
   }
 
   @Get('/userInnerLeft')
-  public async userInneJoinLeft(){
+  public async userInneJoinLeft() {
     return await this.findService.userInneJoinLeft();
   }
 
   @Get('/innerUserRol')
-  public async UserInnerTypeDocumentRol(){
+  public async UserInnerTypeDocumentRol() {
     const res = await this.findService.UserInnerTypeDocumentRol();
     return res;
   }
 
-  @Post('/find')
-  public async findUser(@Body() dtoCreateUser: CreateUserDto) {
-    return await this.findService.finUser(dtoCreateUser);
+  @Get('/relationsUserOneToMany')
+  public async AllRelationsUserOneToMany() {
+    const res = await this.findService.AllRelationsUserOneToMany();
+    return res;
+  }
+
+  @Get('/userDiferentName')
+  public async userDiferentName(){
+    const res = await this.findService.userDiferentName();
+    return res;
+  }
+
+  @Get('/documentType')
+  public async documentType(){
+    const res = await this.findService.documentType();
+    return res;
   }
 
   @Post('/create')
-  @UsePipes(new ValidationPipe({ transform: true }))
+  // @UsePipes(new ValidationPipe({ transform: true }))
   public async createUser(@Body() createUserDto: CreateUserDto) {
-    const res = await this.findService.createuser(createUserDto);
-    return res.name_user.length > 1 ? {
-      message: 'Post user created',
-      data: true
-    }
-      :
-      {
-        message: 'Error to create Product',
-        data: false
-      }
-
+    const res = await this.findService.createUserTransaction(createUserDto);
   }
 
   @Post('/createUsersql')

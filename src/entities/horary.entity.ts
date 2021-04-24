@@ -1,12 +1,12 @@
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { EntityCourtHorary } from "./court_horary.entity";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { EntityCourtHorary } from "./courtHorary.entity";
 import { EntityUser } from "./user.entity";
 
 
 @Entity('horary')
 export class EntityHorary{
   @PrimaryGeneratedColumn('increment')
-  id_horary:number;
+  id:number;
 
   @Column({name:'start_hour'
   ,type:'timestamp'})
@@ -22,6 +22,7 @@ export class EntityHorary{
     onDelete:'RESTRICT',
     onUpdate:'RESTRICT'
   })
+  @JoinColumn({name:'fk_horary'})
   user:EntityUser;
 
   
@@ -30,7 +31,7 @@ export class EntityHorary{
     onDelete:'RESTRICT',
     onUpdate:'RESTRICT'
   })
-  court_horary:EntityCourtHorary;
+  courtHorary:EntityCourtHorary;
 
 
 }

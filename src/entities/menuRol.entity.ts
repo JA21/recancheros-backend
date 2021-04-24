@@ -1,4 +1,4 @@
-import { Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { EntityMenu } from "./menu.entity";
 import { EntityRol } from "./rol.entity";
 
@@ -6,9 +6,9 @@ import { EntityRol } from "./rol.entity";
 @Entity('menu_rol')
 export class EntityMenuRol {
   @PrimaryGeneratedColumn('increment')
-  id_menurol:number;
+  id:number;
 
-  @ManyToOne((type)=>EntityMenu,menu=>menu.menu_rol,{
+  @ManyToOne((type)=>EntityMenu,menu=>menu.menuRol,{
     nullable:false,
     onDelete:'RESTRICT',
     onUpdate:'RESTRICT'
@@ -16,11 +16,12 @@ export class EntityMenuRol {
   menu:EntityMenu;
 
   
-  @ManyToOne((type)=>EntityRol,rol=>rol.menu_rol,{
+  @ManyToOne((type)=>EntityRol,rol=>rol.menuRol,{
     nullable:false,
     onDelete:'RESTRICT',
     onUpdate:'RESTRICT'
   })
+  @JoinColumn({name:'fk_rol'})
   rol:EntityRol;
 
 

@@ -1,14 +1,14 @@
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { EntityCourtHorary } from "./court_horary.entity";
-import { EntityCourtSport } from "./court_sport.entity";
-import { EntityCourtUser } from "./court_user.entity";
-import { EntityTypeCourt } from "./type_court.entity";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { EntityCourtHorary } from "./courtHorary.entity";
+import { EntityCourtSport } from "./courtSport.entity";
+import { EntityCourtUser } from "./courtUser.entity";
+import { EntityTypeCourt } from "./typeCourt.entity";
 
 
 @Entity('court')
 export class EntityCourt{
   @PrimaryGeneratedColumn('increment')
-  id_field:number;
+  id:number;
 
   @Column({nullable:false,
   type:'varchar',
@@ -34,7 +34,7 @@ export class EntityCourt{
     onDelete:'RESTRICT',
     onUpdate:'RESTRICT'
   })
-  court_user:EntityCourtUser;
+  courtUser:EntityCourtUser;
 
   
   @ManyToOne((type)=>EntityTypeCourt,type_court=>type_court.court,{
@@ -42,7 +42,8 @@ export class EntityCourt{
     onDelete:'RESTRICT',
     onUpdate:'RESTRICT'
   })
-  type_court:EntityTypeCourt;
+  @JoinColumn({name:'fk_type_Court'})
+  typeCourt:EntityTypeCourt;
 
   
   @OneToMany((type)=>EntityCourtHorary,court_horary=>court_horary.court,{
@@ -50,7 +51,7 @@ export class EntityCourt{
     onDelete:'RESTRICT',
     onUpdate:'RESTRICT'
   })
-  court_horary:EntityCourtHorary;
+  courtHorary:EntityCourtHorary;
 
 
 }

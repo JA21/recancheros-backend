@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { EntityCourt } from "./court.entity";
 import { State } from "./enums";
 import { EntityHorary } from "./horary.entity";
@@ -7,7 +7,7 @@ import { EntityHorary } from "./horary.entity";
 export class EntityCourtHorary{
   
   @PrimaryGeneratedColumn('increment')
-  id_courthorary:number;
+  id:number;
 
   @Column({nullable:false,
   type:'int',
@@ -20,17 +20,19 @@ export class EntityCourtHorary{
   default:State.Active})
   state:State;
 
-  @ManyToOne((type)=>EntityCourt,court=>court.court_horary,{
+  @ManyToOne((type)=>EntityCourt,court=>court.courtHorary,{
   nullable:false,
   onDelete:'RESTRICT',
   onUpdate:'RESTRICT'  
   })
+  @JoinColumn({name:'fk_court'})
   court:EntityCourt;
 
-  @ManyToOne((type)=>EntityHorary,horary=>horary.court_horary,{
+  @ManyToOne((type)=>EntityHorary,horary=>horary.courtHorary,{
   nullable:false,
   onDelete:'RESTRICT',
   onUpdate:'RESTRICT'  
   })
+  @JoinColumn({name:'fk_horary'})
   horary:EntityHorary;
 }

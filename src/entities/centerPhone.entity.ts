@@ -1,10 +1,10 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { EntityCenter } from "./center.entity";
 
 @Entity('center_phone')
 export class EntityCenterPhone{
   @PrimaryGeneratedColumn('increment')
-  id_centerphone;
+  id:number;
 
   @Column({nullable:false,
   type:'varchar',
@@ -17,5 +17,6 @@ export class EntityCenterPhone{
     onDelete:'RESTRICT',
     onUpdate:'RESTRICT'
   })
+  @JoinColumn({name:'fk_center'})
   center:EntityCenter;
 }

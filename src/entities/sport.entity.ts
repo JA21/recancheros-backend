@@ -1,12 +1,12 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { EntityCourtSport } from "./court_sport.entity";
+import { EntityCourtSport } from "./courtSport.entity";
 import { State } from "./enums";
 
 
 @Entity('sport')
 export class EntitySport{
   @PrimaryGeneratedColumn('increment')
-  id_sport:number;
+  id:number;
 
   @Column({nullable:false,
   name:'name_sport',
@@ -25,5 +25,5 @@ export class EntitySport{
     onDelete:'RESTRICT',
     onUpdate:'RESTRICT'
   })
-  court_sport:EntityCourtSport;
+  courtSport:EntityCourtSport;
 }

@@ -1,10 +1,10 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { EntityCenterService } from "./center_service.entity";
+import { EntityCenterService } from "./centerService.entity";
 
 @Entity('service')
 export class EntityService{
   @PrimaryGeneratedColumn('increment')
-  id_service:number;
+  id:number;
 
   @Column({nullable:false,
     type:'varchar',
@@ -23,5 +23,5 @@ export class EntityService{
     onDelete:'RESTRICT',
     onUpdate:'RESTRICT'
   })
-  center_service:EntityCenterService;
+  centerService:EntityCenterService;
 }

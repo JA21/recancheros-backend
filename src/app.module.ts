@@ -7,7 +7,7 @@ import { CommonModule } from "./modules/@common/common.module";
 import appConfig from "./modules/@common/config/app.config";
 import typeormConfig from "./modules/@common/config/typeorm.config";
 import { UserModule } from "./modules/user/user.module";
-
+import {RolModule} from "./modules/rol/rol.module";
 
 
 @Module({
@@ -22,7 +22,7 @@ import { UserModule } from "./modules/user/user.module";
       useFactory: (configService: ConfigService) => configService.get('typeorm')
     }),
     
-    UserModule
+    UserModule,RolModule
   ],
   controllers:[AppController],
   providers:[AppService]

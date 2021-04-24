@@ -1,16 +1,16 @@
-import { BeforeInsert, Column, Entity, Index, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, Column, Entity, Index, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { compareSync, hashSync } from "bcrypt";
 
 import { EntityCenter } from "./center.entity";
-import { EntityCourtUser } from "./court_user.entity";
+import { EntityCourtUser } from "./courtUser.entity";
 import { State } from "./enums/state.enums";
 import { EntityHorary } from "./horary.entity";
 import { EntityRol } from "./rol.entity";
-import { EntityTypeDocument } from "./type_document.entity";
+import { EntityTypeDocument } from "./typeDocument.entity";
 import { SALTS } from "src/modules/@common/constants";
 
 
-@Entity({schema:'public',name:'user'})
+@Entity('user')
 @Index(['name_user'], { unique: true })
 export class EntityUser {
   @PrimaryGeneratedColumn('increment')
@@ -19,7 +19,7 @@ export class EntityUser {
   @Column({
     nullable: false,
     type: 'varchar',
-    length: 45,
+    length: 180,
     name: 'nameUser'
   })
   name_user: string;
@@ -27,7 +27,7 @@ export class EntityUser {
   @Column({
     nullable: false,
     type: 'varchar',
-    length: 45,
+    length: 180,
     name: 'lastname_user'
   })
   lastname_user: string;
@@ -35,7 +35,7 @@ export class EntityUser {
   @Column({
     nullable: false,
     type: 'varchar',
-    length: 45,
+    length: 180,
     name: 'tel'
   })
   tel: string;
@@ -43,7 +43,7 @@ export class EntityUser {
   @Column({
     nullable: false,
     type: 'varchar',
-    length: 45,
+    length: 180,
     name: 'mail'
   })
   email: string;
@@ -51,7 +51,7 @@ export class EntityUser {
   @Column({
     nullable: false,
     type: 'varchar',
-    length: 45,
+    length: 180,
     name: 'password'
   })
   password: string;
@@ -65,12 +65,13 @@ export class EntityUser {
   })
   state: State;
 
-  @ManyToOne((type) => EntityTypeDocument, type_document => type_document.user, {
+  @ManyToOne((type) => EntityTypeDocument, (type_document) => type_document.user, {
     nullable: false,
     onDelete: 'RESTRICT',
     onUpdate: 'RESTRICT'
   })
-  type_document: EntityTypeDocument;
+  @JoinColumn({name:'fk_typeDocument'})
+  typeDocument: EntityTypeDocument;
 
 
   @ManyToOne((type) => EntityRol, rol => rol.user, {
@@ -78,6 +79,7 @@ export class EntityUser {
     onDelete: 'RESTRICT',
     onUpdate: 'RESTRICT'
   })
+  @JoinColumn({name:'fk_rol'})
   rol: EntityRol;
 
   @OneToMany((type) => EntityHorary, horary => horary.user, {
@@ -85,21 +87,21 @@ export class EntityUser {
     onDelete: 'RESTRICT',
     onUpdate: 'RESTRICT'
   })
-  horary: EntityHorary;
+  horary: EntityHorary[];
 
   @OneToMany((type) => EntityCourtUser, court_user => court_user.user, {
     nullable: false,
     onDelete: 'RESTRICT',
     onUpdate: 'RESTRICT'
   })
-  court_user: EntityCourtUser;
+  courtUser: EntityCourtUser[];
 
   @OneToMany((type) => EntityCenter, center => center.user, {
     nullable: false,
     onDelete: 'RESTRICT',
     onUpdate: 'RESTRICT'
   })
-  center: EntityCenter;
+  center: EntityCenter[];
 
 
   @BeforeInsert()
@@ -111,3 +113,5 @@ export class EntityUser {
     return compareSync(attemp, this.password);
   }
 }
+
+//Crear función de insertar con js y llamarlo en el constructor

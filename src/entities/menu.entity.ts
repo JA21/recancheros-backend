@@ -1,13 +1,13 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { State } from "./enums";
-import {EntityMenuRol} from './menu_rol.entity';
+import {EntityMenuRol} from './menuRol.entity';
 
 
 @Entity('menu')
 export class EntityMenu {
 
   @PrimaryGeneratedColumn('increment')
-  id_menu: number;
+  id: number;
 
   @Column({
     nullable: false,
@@ -39,5 +39,5 @@ export class EntityMenu {
     onDelete: 'RESTRICT',
     onUpdate: 'RESTRICT'
   })
-   menu_rol:EntityMenuRol[];
+   menuRol:EntityMenuRol[];
 }

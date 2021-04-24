@@ -1,13 +1,13 @@
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { EntityCenterPhone } from "./center_phone.entity";
-import { EntityCenterService } from "./center_service.entity";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { EntityCenterPhone } from "./centerPhone.entity";
+import { EntityCenterService } from "./centerService.entity";
 import { EntityUser } from "./user.entity";
 
 
 @Entity('center')
 export class EntityCenter {
   @PrimaryGeneratedColumn('increment')
-  id_center:number;
+  id:number;
 
   @Column({nullable:false,
   type:'varchar',
@@ -50,6 +50,7 @@ export class EntityCenter {
    onDelete:'RESTRICT',
    onUpdate:'RESTRICT'
  })
+ @JoinColumn({name:'fk_center'})
   user:EntityUser;    
 
  @OneToMany((type)=>EntityCenterPhone,center_phone=>center_phone.center,{

@@ -13,6 +13,7 @@ async function bootstrap() {
   );
   const logger=new Logger()
   await app.listen(process.env.PORT || 8550);
+  console.log("🚀 El servidor se está ejecutando en el puerto" );
   logger.log(`Server is runing in ${await app.getUrl()}`);
 }
 bootstrap();

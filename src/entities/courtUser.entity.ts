@@ -5,16 +5,16 @@ import { EntityUser } from "./user.entity";
 @Entity('court_user')
 export class EntityCourtUser{
   @PrimaryGeneratedColumn('increment')
-  id_courtuser:number;
+  id:number;
 
-  @ManyToOne((type)=>EntityUser,user=>user.court_user,{
+  @ManyToOne((type)=>EntityUser,user=>user.courtUser,{
     nullable:false,
     onDelete:'RESTRICT',
     onUpdate:'RESTRICT'
   })
   user:EntityUser;
   
-  @ManyToOne((type)=>EntityCourt,court=>court.court_user,{
+  @ManyToOne((type)=>EntityCourt,court=>court.courtUser,{
     nullable:false,
     onDelete:'RESTRICT',
     onUpdate:'RESTRICT'
