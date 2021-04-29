@@ -14,7 +14,7 @@ import { SALTS } from "src/modules/@common/constants";
 @Index(['name_user'], { unique: true })
 export class EntityUser {
   @PrimaryGeneratedColumn('increment')
-  id_user: number;
+  id: number;
 
   @Column({
     nullable: false,

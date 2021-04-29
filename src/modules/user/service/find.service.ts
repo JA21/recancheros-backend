@@ -53,42 +53,21 @@ export class FindService {
   public async createUserTransaction(createUserDto: CreateUserDto) {
     const res = await getManager().transaction(async (entityManager) => {
 
-      /*  const typeDocuments = this.typeDocumentRepository.create({
-         type: TypeDocument.CE,
-         description: 'Type de cc user'
-       }); */
-
-      /*     console.log("=============");
-          console.log(typeDocuments);
-          console.log("=============");
-          await entityManager.save(typeDocuments); */
-
-
-      /*  const rol = this.rolRepository.create({
-         rol: Rol.User,
-         description: 'User with limit acces'
-       }); */
-
-      /*   console.log("============");
-        console.log(rol);
-        console.log("=============");
-        await entityManager.save(rol); */
-
-      /* const user = this.userRepository.create({
+      const user = this.userRepository.create({
         name_user: createUserDto.name_user,
         lastname_user: createUserDto.lastname_user,
         tel: createUserDto.tel,
         email: createUserDto.email,
         password: createUserDto.password,
         state: State.Active,
-        rol: { id_rol: createUserDto.rol_id },
-        type_document: { id_document: createUserDto.type_document_id }
-      }); */
-/* 
+        rol: { id: createUserDto.rol_id },
+        typeDocument: { id: createUserDto.type_document_id }
+      }); 
+
       console.log("============");
       console.log(user);
       console.log("============")
-      await entityManager.save(user); */
+      await entityManager.save(user); 
     });
     return res;
   }
@@ -209,7 +188,7 @@ export class FindService {
         }
       }, where: [{ name_user: "jaao", lastname_user: "andres" }],
       order: {
-        id_user: "DESC"
+        id: "DESC"
       },
       take: 4
     });
