@@ -15,12 +15,20 @@ import { SALTS } from "src/modules/@common/constants";
 export class EntityUser {
   @PrimaryGeneratedColumn('increment')
   id: number;
-
+  
+  @Column({
+    nullable:false,
+    type: 'int',
+    name:'identification',
+    unique:true
+  })
+  identification:number;
   @Column({
     nullable: false,
     type: 'varchar',
     length: 180,
-    name: 'nameUser'
+    name: 'nameUser',
+    unique:true
   })
   name_user: string;
 
