@@ -52,7 +52,8 @@ export class EntityUser {
     nullable: false,
     type: 'varchar',
     length: 180,
-    name: 'mail'
+    name: 'mail',
+    unique: true,
   })
   email: string;
 

@@ -12,7 +12,8 @@ export class EntityCenter {
   @Column({nullable:false,
   type:'varchar',
   name:'name_center',
-  length:150})
+  length:150,
+  unique: true})
   name:string;
 
   @Column({nullable:false,
@@ -24,7 +25,8 @@ export class EntityCenter {
   @Column({nullable:false,
   type:'varchar',
   name:'email',
-  length:150})
+  length:150,
+  unique:true,})
   email:string;
   
   @Column({nullable:false,
@@ -36,7 +38,8 @@ export class EntityCenter {
   @Column({nullable:false,
   type:'varchar',
   name:'rut',
-  length:150})
+  length:150,
+  unique:true,})
   rut:string;
 
   @Column({nullable:false,
